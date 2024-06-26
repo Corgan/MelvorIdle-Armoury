@@ -1,0 +1,210 @@
+{
+  "$schema": "https://www.melvoridle.com/assets/schema/gameData.json",
+  "namespace": "armoury",
+  "data": {
+    "itemSets": [
+      {
+        "id": "Bronze",
+        "name": "Bronzed Beginnings",
+        "equipmentSlots": [
+          {
+            "slotID": "melvorD:Helmet",
+            "itemIDs": [
+              "melvorD:Bronze_Helmet",
+              "melvorD:Bronze_Helmet_T_S",
+              "melvorD:Bronze_Helmet_T_G"
+            ]
+          },
+          {
+            "slotID": "melvorD:Platebody",
+            "itemIDs": [
+              "melvorD:Bronze_Platebody",
+              "melvorD:Bronze_Platebody_T_S",
+              "melvorD:Bronze_Platebody_T_G"
+            ]
+          },
+          {
+            "slotID": "melvorD:Platelegs",
+            "itemIDs": [
+              "melvorD:Bronze_Platelegs",
+              "melvorD:Bronze_Platelegs_T_S",
+              "melvorD:Bronze_Platelegs_T_G"
+            ]
+          },
+          {
+            "slotID": "melvorD:Boots",
+            "itemIDs": [
+              "melvorD:Bronze_Boots",
+              "melvorD:Bronze_Boots_T_S",
+              "melvorD:Bronze_Boots_T_G"
+            ]
+          },
+          {
+            "slotID": "melvorD:Gloves",
+            "itemIDs": [
+              "melvorD:Bronze_Gloves"
+            ]
+          }
+        ],
+        "stages": [
+          {
+            "required": 3,
+            "modifiers": {
+              "meleeEvasion": 5
+            }
+          },
+          {
+            "required": 5,
+            "modifiers": {
+              "meleeAccuracyRating": 5
+            }
+          }
+        ]
+      },
+      {
+        "id": "Terran",
+        "name": "Tenacious Terran",
+        "equipmentSlots": [
+          {
+            "slotID": "melvorD:Helmet",
+            "itemIDs": [
+              "melvorF:Terran_God_Helmet",
+              "melvorF:Terran_God_Helmet_T_B",
+              "melvorF:Terran_God_Helmet_T_C"
+            ]
+          },
+          {
+            "slotID": "melvorD:Platebody",
+            "itemIDs": [
+              "melvorF:Terran_God_Platebody",
+              "melvorF:Terran_God_Platebody_T_B",
+              "melvorF:Terran_God_Platebody_T_C"
+            ]
+          },
+          {
+            "slotID": "melvorD:Platelegs",
+            "itemIDs": [
+              "melvorF:Terran_God_Platelegs",
+              "melvorF:Terran_God_Platelegs_T_B",
+              "melvorF:Terran_God_Platelegs_T_C"
+            ]
+          },
+          {
+            "slotID": "melvorD:Boots",
+            "itemIDs": [
+              "melvorF:Terran_God_Boots",
+              "melvorF:Terran_God_Boots_T_B",
+              "melvorF:Terran_God_Boots_T_C"
+            ]
+          },
+          {
+            "slotID": "melvorD:Gloves",
+            "itemIDs": [
+              "melvorF:Terran_God_Gloves",
+              "melvorF:Terran_God_Gloves_T_B",
+              "melvorF:Terran_God_Gloves_T_C",
+              "melvorF:Spiked_Shell_Gloves"
+            ]
+          },
+          {
+            "slotID": "melvorD:Ring",
+            "itemIDs": [
+              "melvorF:Guardian_Ring",
+              "melvorF:Spiked_Shell_Ring"
+            ]
+          },
+          {
+            "slotID": "melvorD:Amulet",
+            "itemIDs": [
+              "melvorF:Guardian_Amulet"
+            ]
+          }
+        ],
+        "stages": [
+          {
+            "required": 3,
+            "modifiers": {
+              "increasedDamageReduction": 5
+            }
+          },
+          {
+            "required": 5,
+            "customDescription": "+5% Damage Reduction if you are below 50% Hitpoints",
+            "conditionalModifiers": [
+              {
+                "condition": {
+                  "type": "Hitpoints",
+                  "character": "Player",
+                  "operator": "<",
+                  "value": 50
+                },
+                "modifiers": {
+                  "increasedDamageReduction": 2
+                }
+              }
+            ]
+          },
+          {
+            "required": 7,
+            "combatEffects": [
+              {
+                "effectID": "melvorD:EndOfTurnMaxHealing",
+                "initialParams": [
+                  {
+                    "name": "XTurns",
+                    "value": 3
+                  },
+                  {
+                    "name": "percent",
+                    "value": 5
+                  }
+                ],
+                "appliesWhen": "StartOfFight",
+                "descriptionLang": "CUSTOM_APPLICATOR_END_OF_TURN_MAX_HEALING"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "empoweredItems": [
+      {
+      "id": "Terran",
+      "name": "Empowered Terran Godsword",
+      "item": {
+        "slotID": "melvorD:Weapon",
+        "itemID": "melvorF:Terran_Godsword"
+      },
+      "sets": ["armoury:Bronze", "armoury:Terran"],
+      "equipmentSlots": [
+        {
+          "slotID": "melvorD:Cape",
+          "itemIDs": [
+            "melvorD:Fire_Cape",
+            "melvorAoD:Golden_Fire_Cape"
+          ]
+        }
+      ],
+      "stages": [
+        {
+          "required": 4,
+          "modifiers": {
+                "increasedHealingOnAttackBasedOnResistance": [
+                  {
+                    "damageTypeID": "melvorD:Normal",
+                    "value": 5
+                  }
+                ]
+          }
+        },
+        {
+          "required": 6,
+          "modifiers": {
+            "increasedMaxHitPercentBasedOnDamageReduction": 0.5
+          }
+        }
+      ]
+    }
+    ]
+  }
+}

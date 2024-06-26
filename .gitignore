@@ -1,0 +1,9 @@
+node_modules/
+views/
+data.mjs
+package.json
+package-lock.json
+archive/
+beta/
+*.zip
+build.js
