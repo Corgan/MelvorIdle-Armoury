@@ -1,0 +1,845 @@
+{
+  "$schema": "https://www.melvoridle.com/assets/schema/gameData.json",
+  "namespace": "armoury",
+  "data": {
+    "itemSets": [
+      {
+        "id": "Ancient",
+        "name": "Archaic Armour",
+        "equipmentSlots": [
+          {
+            "slotID": "melvorD:Helmet",
+            "itemIDs": [
+              "melvorD:Ancient_Helmet",
+              "melvorD:Ancient_Helmet_T_S",
+              "melvorD:Ancient_Helmet_T_G"
+            ]
+          },
+          {
+            "slotID": "melvorD:Platebody",
+            "itemIDs": [
+              "melvorD:Ancient_Platebody",
+              "melvorD:Ancient_Platebody_T_S",
+              "melvorD:Ancient_Platebody_T_G"
+            ]
+          },
+          {
+            "slotID": "melvorD:Platelegs",
+            "itemIDs": [
+              "melvorD:Ancient_Platelegs",
+              "melvorD:Ancient_Platelegs_T_S",
+              "melvorD:Ancient_Platelegs_T_G"
+            ]
+          },
+          {
+            "slotID": "melvorD:Cape",
+            "itemIDs": [
+              "melvorD:Fire_Cape",
+              "melvorD:Infernal_Cape"
+            ]
+          }
+        ],
+        "stages": [
+          {
+            "required": 2,
+            "modifiers": {
+              "meleeStrengthBonus": 10
+            }
+          },
+          {
+            "required": 4,
+            "modifiers": {
+              "damageDealtToBosses": 5
+            }
+          }
+        ]
+      },
+      {
+        "id": "Aeris",
+        "name": "Aeris' Malice",
+        "equipmentSlots": [
+          {
+            "slotID": "melvorD:Helmet",
+            "itemIDs": [
+              "melvorF:Aeris_God_Helmet",
+              "melvorAoD:Aeris_God_Helmet_T_B",
+              "melvorAoD:Aeris_God_Helmet_T_C"
+            ]
+          },
+          {
+            "slotID": "melvorD:Platebody",
+            "itemIDs": [
+              "melvorF:Aeris_God_Platebody",
+              "melvorAoD:Aeris_God_Platebody_T_B",
+              "melvorAoD:Aeris_God_Platebody_T_C"
+            ]
+          },
+          {
+            "slotID": "melvorD:Platelegs",
+            "itemIDs": [
+              "melvorF:Aeris_God_Platelegs",
+              "melvorAoD:Aeris_God_Platelegs_T_B",
+              "melvorAoD:Aeris_God_Platelegs_T_C"
+            ]
+          },
+          {
+            "slotID": "melvorD:Boots",
+            "itemIDs": [
+              "melvorF:Aeris_God_Boots",
+              "melvorAoD:Aeris_God_Boots_T_B",
+              "melvorAoD:Aeris_God_Boots_T_C"
+            ]
+          },
+          {
+            "slotID": "melvorD:Gloves",
+            "itemIDs": [
+              "melvorF:Aeris_God_Gloves",
+              "melvorAoD:Aeris_God_Gloves_T_B",
+              "melvorAoD:Aeris_God_Gloves_T_C",
+              "melvorF:Poison_Virulence_Gloves"
+            ]
+          },
+          {
+            "slotID": "melvorD:Ring",
+            "itemIDs": [
+              "melvorF:Deadeye_Ring",
+              "melvorF:Poison_Virulence_Ring"
+            ]
+          },
+          {
+            "slotID": "melvorD:Amulet",
+            "itemIDs": [
+              "melvorF:Deadeye_Amulet"
+            ]
+          }
+        ],
+        "stages": [
+          {
+            "required": 3,
+            "conditionalModifiers": [
+              {
+                "description": "+${modValue0}% Accuracy Rating and ${modValue1}% Evasion Rating if the enemy is affected by ${condEffectGroupName}",    
+                "condition": {
+                  "type": "CombatEffectGroup",
+                  "character": "Enemy",
+                  "groupID": "melvorD:PoisonDOT"
+                },
+                "modifiers": {
+                  "accuracyRating": 20,
+                  "evasion": 20
+                }
+              }
+            ]
+          },
+          {
+            "required": 5,
+            "combatEffects": [
+              {
+                "effectID": "melvorD:Poison",
+                "chance": 20,
+                "appliesWhen": "HitWithAttack",
+                "targetOverride": "Self",
+                "customDescription": "+${chance}% chance to apply ${effectName} to self when hitting with an attack"
+              },
+              {
+                "effectID": "melvorD:Poison",
+                "chance": 20,
+                "appliesWhen": "HitWithAttack"
+              }
+            ]
+          },
+          {
+            "required": 7,
+            "combatEffects": [
+              {
+                "effectID": "melvorD:DeadlyPoison",
+                "chance": 10,
+                "condition": {
+                  "character": "Enemy",
+                  "type": "CombatEffectGroup",
+                  "groupID": "melvorD:PoisonDOT"
+                },
+                "appliesWhen": "HitWithAttack",
+                "customDescription": "+${chance}% chance to apply ${effectName} when hitting an enemy affected by ${condEffectGroupName} with an attack"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Glacia",
+        "name": "Glacial Glacia",
+        "equipmentSlots": [
+          {
+            "slotID": "melvorD:Helmet",
+            "itemIDs": [
+              "melvorF:Glacia_God_Helmet",
+              "melvorAoD:Glacia_God_Helmet_T_B",
+              "melvorAoD:Glacia_God_Helmet_T_C"
+            ]
+          },
+          {
+            "slotID": "melvorD:Platebody",
+            "itemIDs": [
+              "melvorF:Glacia_God_Platebody",
+              "melvorAoD:Glacia_God_Platebody_T_B",
+              "melvorAoD:Glacia_God_Platebody_T_C"
+            ]
+          },
+          {
+            "slotID": "melvorD:Platelegs",
+            "itemIDs": [
+              "melvorF:Glacia_God_Platelegs",
+              "melvorAoD:Glacia_God_Platelegs_T_B",
+              "melvorAoD:Glacia_God_Platelegs_T_C"
+            ]
+          },
+          {
+            "slotID": "melvorD:Boots",
+            "itemIDs": [
+              "melvorF:Glacia_God_Boots",
+              "melvorAoD:Glacia_God_Boots_T_B",
+              "melvorAoD:Glacia_God_Boots_T_C"
+            ]
+          },
+          {
+            "slotID": "melvorD:Gloves",
+            "itemIDs": [
+              "melvorF:Glacia_God_Gloves",
+              "melvorAoD:Glacia_God_Gloves_T_B",
+              "melvorAoD:Glacia_God_Gloves_T_C",
+              "melvorF:Burning_Madness_Gloves"
+            ]
+          },
+          {
+            "slotID": "melvorD:Ring",
+            "itemIDs": [
+              "melvorF:Warlock_Ring",
+              "melvorF:Burning_Madness_Ring"
+            ]
+          },
+          {
+            "slotID": "melvorD:Amulet",
+            "itemIDs": [
+              "melvorF:Warlock_Amulet"
+            ]
+          }
+        ],
+        "stages": [
+          {
+            "required": 3,
+            "conditionalModifiers": [
+              {
+                "description": "-${modValue0}% Max Hit and +${modValue1}% Attack Interval for the enemy if they are affected by ${condEffectGroupName0} or ${condEffectGroupName1}",    
+                "condition": {
+                  "type": "Some",
+                  "conditions": [
+                    {
+                      "character": "Enemy",
+                      "type": "CombatEffectGroup",
+                      "groupID": "melvorD:Frostburn"
+                    },
+                    {
+                      "character": "Enemy",
+                      "type": "CombatEffectGroup",
+                      "groupID": "melvorD:BurnDOT"
+                    }
+                  ]
+                },
+                "enemyModifiers": {
+                  "maxHit": -20,
+                  "attackInterval": 20
+                }
+              }
+            ]
+          },
+          {
+            "required": 5,
+            "combatEffects": [
+              {
+                "tableID": "armoury:FrostOrBurn",
+                "chance": 20,
+                "appliesWhen": "HitWithAttack",
+                "targetOverride": "Self",
+                "customDescription": "+${chance}% chance to apply Burn or Frostburn to self when hitting with an attack"
+              },
+              {
+                "tableID": "armoury:FrostOrBurn",
+                "chance": 20,
+                "appliesWhen": "HitWithAttack",
+                "customDescription": "+${chance}% chance to apply Burn or Frostburn when hitting with an attack"
+              }
+            ]
+          },
+          {
+            "required": 7,
+            "combatEffects": [
+              {
+                "effectID": "melvorD:Freeze",
+                "chance": 10,
+                "condition": {
+                  "type": "Some",
+                  "conditions": [
+                    {
+                      "character": "Enemy",
+                      "type": "CombatEffectGroup",
+                      "groupID": "melvorD:Frostburn"
+                    },
+                    {
+                      "character": "Enemy",
+                      "type": "CombatEffectGroup",
+                      "groupID": "melvorD:BurnDOT"
+                    }
+                  ]
+                },
+                "appliesWhen": "HitWithAttack",
+                "customDescription": "+${chance}% chance to apply Freeze when hitting an enemy affected by ${condEffectGroupName0} or ${condEffectGroupName1} with an attack"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Terran",
+        "name": "Terran's Tenacity",
+        "equipmentSlots": [
+          {
+            "slotID": "melvorD:Helmet",
+            "itemIDs": [
+              "melvorF:Terran_God_Helmet",
+              "melvorAoD:Terran_God_Helmet_T_B",
+              "melvorAoD:Terran_God_Helmet_T_C"
+            ]
+          },
+          {
+            "slotID": "melvorD:Platebody",
+            "itemIDs": [
+              "melvorF:Terran_God_Platebody",
+              "melvorAoD:Terran_God_Platebody_T_B",
+              "melvorAoD:Terran_God_Platebody_T_C"
+            ]
+          },
+          {
+            "slotID": "melvorD:Platelegs",
+            "itemIDs": [
+              "melvorF:Terran_God_Platelegs",
+              "melvorAoD:Terran_God_Platelegs_T_B",
+              "melvorAoD:Terran_God_Platelegs_T_C"
+            ]
+          },
+          {
+            "slotID": "melvorD:Boots",
+            "itemIDs": [
+              "melvorF:Terran_God_Boots",
+              "melvorAoD:Terran_God_Boots_T_B",
+              "melvorAoD:Terran_God_Boots_T_C"
+            ]
+          },
+          {
+            "slotID": "melvorD:Gloves",
+            "itemIDs": [
+              "melvorF:Terran_God_Gloves",
+              "melvorAoD:Terran_God_Gloves_T_B",
+              "melvorAoD:Terran_God_Gloves_T_C",
+              "melvorF:Spiked_Shell_Gloves"
+            ]
+          },
+          {
+            "slotID": "melvorD:Ring",
+            "itemIDs": [
+              "melvorF:Guardian_Ring",
+              "melvorF:Spiked_Shell_Ring"
+            ]
+          },
+          {
+            "slotID": "melvorD:Amulet",
+            "itemIDs": [
+              "melvorF:Guardian_Amulet"
+            ]
+          }
+        ],
+        "stages": [
+          {
+            "required": 3,
+            "conditionalModifiers": [
+              {
+                "description": "+${modValue0}% Damage Reduction and ${modValue1}% chance to convert a successful hit from the Target into a miss if the enemy is affected by ${condEffectGroupName}",    
+                "condition": {
+                  "type": "CombatEffectGroup",
+                  "character": "Enemy",
+                  "groupID": "melvorD:BleedDOT"
+                },
+                "modifiers": {
+                  "flatResistance": [
+                    {
+                      "damageTypeID": "melvorD:Normal",
+                      "value": 4
+                    }
+                  ],
+                  "dodgeChance": 10
+                }
+              }
+            ]
+          },
+          {
+            "required": 5,
+            "combatEffects": [
+              {
+                "effectID": "armoury:BleedPercentMaxHP10",
+                "chance": 20,
+                "appliesWhen": "HitWithAttack",
+                "targetOverride": "Self",
+                "customDescription": "+${chance}% chance to apply ${effectName} that deals ${DamageMaxValue0}% of your max hitpoints as damage over ${duration}s to self when hitting with an attack"
+              },
+              {
+                "effectID": "armoury:BleedPercentMaxHP10",
+                "chance": 20,
+                "appliesWhen": "HitWithAttack",
+                "customDescription": "+${chance}% chance to apply ${effectName} that deals ${DamageMaxValue0}% of the enemy's max hitpoints as damage over ${duration}s when hitting with an attack"
+              }
+            ]
+          },
+          {
+            "required": 7,
+            "combatEffects": [
+              {
+                "effectID": "melvorD:Slow",
+                "chance": 10,
+                  "condition": {
+                  "type": "CombatEffectGroup",
+                  "character": "Enemy",
+                  "groupID": "melvorD:BleedDOT"
+                },
+                "initialParams": [
+                  {
+                    "name": "magnitude",
+                    "value": 40
+                  },
+                  {
+                    "name": "turns",
+                    "value": 2
+                  }
+                ],
+                "appliesWhen": "HitWithAttack",
+                "customDescription": "+${chance}% chance to apply a ${magnitude}% Slow for ${turns} Attack turn(s) when hitting with an enemy affected by ${condEffectGroupName}"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Ragnar",
+        "name": "Raging Ragnar",
+        "equipmentSlots": [
+          {
+            "slotID": "melvorD:Helmet",
+            "itemIDs": [
+              "melvorF:Ragnar_God_Helmet",
+              "melvorAoD:Ragnar_God_Helmet_T_B",
+              "melvorAoD:Ragnar_God_Helmet_T_C"
+            ]
+          },
+          {
+            "slotID": "melvorD:Platebody",
+            "itemIDs": [
+              "melvorF:Ragnar_God_Platebody",
+              "melvorAoD:Ragnar_God_Platebody_T_B",
+              "melvorAoD:Ragnar_God_Platebody_T_C"
+            ]
+          },
+          {
+            "slotID": "melvorD:Platelegs",
+            "itemIDs": [
+              "melvorF:Ragnar_God_Platelegs",
+              "melvorAoD:Ragnar_God_Platelegs_T_B",
+              "melvorAoD:Ragnar_God_Platelegs_T_C"
+            ]
+          },
+          {
+            "slotID": "melvorD:Boots",
+            "itemIDs": [
+              "melvorF:Ragnar_God_Boots",
+              "melvorAoD:Ragnar_God_Boots_T_B",
+              "melvorAoD:Ragnar_God_Boots_T_C"
+            ]
+          },
+          {
+            "slotID": "melvorD:Gloves",
+            "itemIDs": [
+              "melvorF:Ragnar_God_Gloves",
+              "melvorAoD:Ragnar_God_Gloves_T_B",
+              "melvorAoD:Ragnar_God_Gloves_T_C",
+              "melvorF:Relentless_Fury_Gloves"
+            ]
+          },
+          {
+            "slotID": "melvorD:Ring",
+            "itemIDs": [
+              "melvorF:Fighter_Ring",
+              "melvorF:Relentless_Fury_Ring"
+            ]
+          },
+          {
+            "slotID": "melvorD:Amulet",
+            "itemIDs": [
+              "melvorF:Fighter_Amulet"
+            ]
+          }
+        ],
+        "stages": [
+          {
+            "required": 3,
+            "conditionalModifiers": [
+              {
+                "description": "+${modValue0}% Max Hit and +${modValue1}% of Maximum Hit added to Minimum Hit if the enemy is affected by ${condEffectGroupName}",    
+                "condition": {
+                  "type": "CombatEffectGroup",
+                  "character": "Enemy",
+                  "groupID": "melvorD:Stun"
+                },
+                "modifiers": {
+                  "maxHit": 20,
+                  "minHitBasedOnMaxHit": 20
+                }
+              }
+            ]
+          },
+          {
+            "required": 5,
+            "combatEffects": [
+              {
+                "effectID": "melvorD:Stun",
+                "chance": 20,
+                "appliesWhen": "HitWithAttack"
+              }
+            ]
+          },
+          {
+            "required": 7,
+            "combatEffects": [
+              {
+                "effectID": "armoury:CrystallizeFromStun",
+                "chance": 10,
+                "condition": {
+                  "character": "Enemy",
+                  "type": "CombatEffectGroup",
+                  "groupID": "melvorD:Stun"
+                },
+                "appliesWhen": "HitWithAttack",
+                "customDescription": "+${chance}% chance to apply ${effectName} when hitting an enemy affected by ${condEffectGroupName} with an attack"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "empoweredItems": [
+      {
+        "id": "Aeris_Godsword",
+        "name": "Empowered Aeris Godsword",
+        "item": {
+          "slotID": "melvorD:Weapon",
+          "itemID": "melvorF:Aeris_Godsword"
+        },
+        "sets": ["armoury:Aeris"],
+        "stages": [
+          {
+            "required": 4,
+            "modifiers": {
+              "flatMeleeStrengthBonusBasedOnSkillLevel": [
+                {
+                  "skillID": "melvorD:Ranged",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          {
+            "required": 6,
+            "conditionalModifiers": [
+              {
+                "description": "Your Attacks now roll twice (Select highest chance) if you are affected by ${condEffectGroupName}",    
+                "condition": {
+                  "type": "CombatEffectGroup",
+                  "character": "Player",
+                  "groupID": "melvorD:PoisonDOT"
+                },
+                "modifiers": {
+                  "attackRolls": 1
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Glacia_Godsword",
+        "name": "Empowered Glacia Godsword",
+        "item": {
+          "slotID": "melvorD:Weapon",
+          "itemID": "melvorF:Glacia_Godsword"
+        },
+        "sets": ["armoury:Glacia"],
+        "stages": [
+          {
+            "required": 4,
+            "modifiers": {
+              "flatMeleeStrengthBonusBasedOnSkillLevel": [
+                {
+                  "skillID": "melvorD:Magic",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          {
+            "required": 6,
+            "modifiers": {
+              "allowAttackAugmentingMagic": 1
+            }
+          }
+        ]
+      },
+      {
+        "id": "Terran_Godsword",
+        "name": "Empowered Terran Godsword",
+        "item": {
+          "slotID": "melvorD:Weapon",
+          "itemID": "melvorF:Terran_Godsword"
+        },
+        "sets": ["armoury:Terran"],
+        "stages": [
+          {
+            "required": 4,
+            "modifiers": {
+              "flatMeleeStrengthBonusBasedOnSkillLevel": [
+                {
+                  "skillID": "melvorD:Defence",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          {
+            "required": 6,
+            "combatEffects": [
+              {
+                "effectID": "melvorD:EndOfTurnMaxHealing",
+                "initialParams": [
+                  {
+                    "name": "XTurns",
+                    "value": 2
+                  },
+                  {
+                    "name": "percent",
+                    "value": 5
+                  }
+                ],
+                "appliesWhen": "StartOfFight",
+                "descriptionLang": "CUSTOM_APPLICATOR_END_OF_TURN_MAX_HEALING"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Ragnar_Godsword",
+        "name": "Empowered Ragnar Godsword",
+        "item": {
+          "slotID": "melvorD:Weapon",
+          "itemID": "melvorF:Ragnar_Godsword"
+        },
+        "sets": ["armoury:Ragnar"],
+        "stages": [
+          {
+            "required": 4,
+            "modifiers": {
+              "flatMeleeStrengthBonusBasedOnSkillLevel": [
+                {
+                  "skillID": "melvorD:Attack",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          {
+            "required": 6,
+            "conditionalModifiers": [
+              {
+                "description": "-${modValue0}% Attack Interval if the enemy is affected by ${condEffectGroupName}",    
+                "condition": {
+                  "type": "CombatEffectGroup",
+                  "character": "Enemy",
+                  "groupID": "melvorD:Stun"
+                },
+                "modifiers": {
+                  "attackInterval": -30
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "combatEffectTemplates": [
+      {
+        "id": "CrystallizeFromStun",
+        "description": "Endpoint Template. Defines behaviours for an effect that: Interrupts a character's turn when applied; prevents then from attacking or regenerating barrier, and causes them to take 50% more damage.",
+        "baseTemplates": [
+          "melvorD:SelfTurnCounting"
+        ],
+        "baseEffectData": {
+          "name": "Crystallized",
+          "nameLang": "COMBAT_MISC_CRYSTALLIZED",
+          "media": "melvor:assets/media/status/crystallized.svg",
+          "tooltipSpans": [
+            {
+              "type": "LangString",
+              "langID": "COMBAT_MISC_CANNOT_ATTACK_OR_EVADE"
+            },
+            {
+              "type": "LangString",
+              "langID": "COMBAT_MISC_INCREASED_DAMAGE_TAKEN",
+              "templateData": {
+                "value": 50
+              },
+              "className": "text-danger"
+            },
+            {
+              "type": "Turns",
+              "turns": "p.turns"
+            }
+          ],
+          "target": "Target",
+          "statGroups": [
+            {
+              "name": "debuff",
+              "modifiers": {
+                "cantAttack": 1,
+                "cantEvade": 1,
+                "cantRegenBarrier": 1,
+                "damageTaken": 50
+              }
+            }
+          ],
+          "behaviours": [
+            {
+              "type": "ModifyStats",
+              "statGroupName": "debuff",
+              "newValue": "statGroup.debuff + 1",
+              "triggersOn": [
+                {
+                  "type": "EffectApplied"
+                }
+              ]
+            },
+            {
+              "type": "InterruptTurn",
+              "triggersOn": [
+                {
+                  "type": "EffectApplied"
+                }
+              ]
+            },
+            {
+              "type": "ModifyParameter",
+              "chance": "sc.modifier.stunDurationIncreaseChance",
+              "paramName": "turns",
+              "newValue": "param.turns + 1",
+              "triggersOn": [
+                {
+                  "type": "EffectApplied"
+                }
+              ]
+            },
+            {
+              "type": "HealCharacter",
+              "value": "floor((s.modifier.healWhenStunned * s.stats.maxHitpoints) / 100)",
+              "triggersOn": [
+                {
+                  "type": "EffectApplied"
+                }
+              ]
+            },
+            {
+              "type": "ProcessApplicator",
+              "chance": "t.modifier.decreaseEnemyEvasionOnStun",
+              "applicator": {
+                "effectID": "melvorD:DecreasedEvasionStacking"
+              },
+              "triggersOn": [
+                {
+                  "type": "EffectApplied"
+                }
+              ]
+            }
+          ],
+          "effectGroups": [
+            "melvorD:Crystallize"
+          ],
+          "exclusiveGroups": [
+            "melvorD:Crystallize"
+          ]
+        }
+      }
+    ],
+    "combatEffectTables": [
+      {
+        "id": "FrostOrBurn",
+        "table": [
+          {
+            "effectID": "melvorD:Burn",
+            "weight": 1
+          },
+          {
+            "effectID": "melvorD:Frostburn",
+            "weight": 1
+          }
+        ]
+      }
+    ],
+    "combatEffects": [
+      {
+        "id": "CrystallizeFromStun",
+        "templateID": "armoury:CrystallizeFromStun",
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 1
+          }
+        ]
+      },
+      {
+        "id": "BleedPercentMaxHP10",
+        "templateID": "melvorD:BleedDOT",
+        "media": "melvor:assets/media/misc/blood.svg",
+        "parameters": [
+          {
+            "name": "procs",
+            "initialValue": 20
+          },
+          {
+            "name": "interval",
+            "initialValue": 500
+          }
+        ],
+        "damageGroups": [
+          {
+            "name": "total",
+            "damage": [
+              {
+                "character": "Target",
+                "roll": false,
+                "maxRoll": "MaxHP",
+                "maxPercent": 10
+              }
+            ],
+            "applyDamageModifiers": true,
+            "applyTypeModifiers": "Bleed",
+            "applyResistance": true
+          }
+        ]
+      }
+    ]
+  }
+}

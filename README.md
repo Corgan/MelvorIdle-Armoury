@@ -1,2 +1,2 @@
-# MelvorIdle-Multitasking
-Multitasking Action for Melvor Idle
+# MelvorIdle-Armoury
+Equipment Sets for Melvor Idle

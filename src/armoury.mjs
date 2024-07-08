@@ -8,9 +8,7 @@ class ItemSetBonusStage {
 
         if(data.customDescription)
             this._customDescription = data.customDescription;
-
-        if(data.combatEffects !== undefined)
-            this.combatEffects = game.getCombatEffectApplicatorsWithTriggersFromData(data.combatEffects);
+        
         if(data.resistanceStats !== undefined) {
             data.resistanceStats.forEach(stat => {
                 const damageType = game.damageTypes.getObjectSafe(stat.id);
@@ -28,6 +26,8 @@ class ItemSetBonusStage {
                 this.enemyModifiers = game.getEnemyModifierValuesFromData(data.enemyModifiers);
             if(data.conditionalModifiers !== undefined)
                 this.conditionalModifiers = data.conditionalModifiers.map(data => new ConditionalModifier(data,game,this));
+            if(data.combatEffects !== undefined)
+                this.combatEffects = game.getCombatEffectApplicatorsWithTriggersFromData(data.combatEffects);
         } catch (e) {
             throw new DataConstructionError(ItemSetBonusStage.name, e);
         }
@@ -64,8 +64,6 @@ class EmpoweredItemBonusStage {
         if(data.customDescription)
             this._customDescription = data.customDescription;
 
-        if(data.combatEffects !== undefined)
-            this.combatEffects = game.getCombatEffectApplicatorsWithTriggersFromData(data.combatEffects);
         if(data.resistanceStats !== undefined) {
             data.resistanceStats.forEach(stat => {
                 const damageType = game.damageTypes.getObjectSafe(stat.id);
@@ -83,6 +81,8 @@ class EmpoweredItemBonusStage {
                 this.enemyModifiers = game.getEnemyModifierValuesFromData(data.enemyModifiers);
             if(data.conditionalModifiers !== undefined)
                 this.conditionalModifiers = data.conditionalModifiers.map(data => new ConditionalModifier(data,game,this));
+            if(data.combatEffects !== undefined)
+                this.combatEffects = game.getCombatEffectApplicatorsWithTriggersFromData(data.combatEffects);
         } catch (e) {
             throw new DataConstructionError(EmpoweredItemBonusStage.name, e);
         }

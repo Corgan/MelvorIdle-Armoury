@@ -8,6 +8,13 @@ export async function setup({ gameData, loadModule, loadScript, onModsLoaded, on
         if(gameData.empoweredItems !== undefined)
             game.armoury.registerEmpoweredItemData(namespace, gameData.empoweredItems);
     });
+
+    patch(Game, 'applyDataModifications').before(function (modificationData) {
+        //if(modificationData.itemSets !== undefined)
+            //game.armoury.registerItemSetData(namespace, modificationData.itemSets);
+        //if(modificationData.empoweredItems !== undefined)
+            //game.armoury.registerEmpoweredItemData(namespace, modificationData.empoweredItems);
+    });
     
 
     patch(Player, 'computeItemSynergies').after(function () {
@@ -92,7 +99,7 @@ export async function setup({ gameData, loadModule, loadScript, onModsLoaded, on
 
                 empoweredItem.stages.forEach(stage => {
                     stagesList.append(createElement('small', {
-                        text: `(${stage.required}): ${stage.modifiedDescription}`,
+                        innerHTML: `(${stage.required}): ${stage.modifiedDescription}`,
                         classList: [stage.required <= count ? 'text-success' : 'text-muted', 'text-center', 'col-12']
                     }));
                 });
@@ -136,7 +143,7 @@ export async function setup({ gameData, loadModule, loadScript, onModsLoaded, on
 
                 set.stages.forEach(stage => {
                     stagesList.append(createElement('small', {
-                        text: `(${stage.required}) Set: ${stage.modifiedDescription}`,
+                        innerHTML: `(${stage.required}) Set: ${stage.modifiedDescription}`,
                         classList: [stage.required <= count ? 'text-success' : 'text-muted', 'text-center', 'col-12']
                     }));
                 });
@@ -209,8 +216,9 @@ export async function setup({ gameData, loadModule, loadScript, onModsLoaded, on
     patch(Player, 'mergeInheritedEffectApplicators').after(function() {
         game.armoury.activeItemSetStages.forEach((stages, set) => {
             stages.forEach(stage => {
-                if(stage.combatEffects !== undefined)
+                if(stage.combatEffects !== undefined) {
                     this.mergeEffectApplicators(stage.combatEffects);
+                }
             });
         });
         game.armoury.activeEmpoweredItemStages.forEach((stages, empoweredItem) => {
@@ -221,5 +229,111 @@ export async function setup({ gameData, loadModule, loadScript, onModsLoaded, on
         });
     });
 
-    await gameData.addPackage('data.json');
+
+    // Sadness
+    const _createItemInformationTooltip = createItemInformationTooltip;
+    createItemInformationTooltip = function(...args) {
+        let [ item, showStats=false ] = args;
+        let html = _createItemInformationTooltip(...args);
+
+        let customHTML = '';
+        
+        if(game.armoury.itemHasEmpowered(item)) {
+            let empoweredContainer = createElement('div');
+
+            let empoweredItem = game.armoury.getEmpoweredItemFromItem(item);
+            let count = empoweredItem.countActiveItems();
+
+            let empoweredList = createElement('div', {
+                classList: ['text-center', 'col-12', 'row', 'no-gutters'],
+                parent: empoweredContainer
+            });
+
+            empoweredList.append(createElement('small', {
+                text: `${empoweredItem.name} (${Math.min(count, empoweredItem.highestRequirement)}/${empoweredItem.highestRequirement}):`,
+                classList: ['text-warning', 'text-center', 'font-w700', 'col-12']
+            }));
+
+            if(empoweredItem.sets !== undefined) {
+                empoweredItem.sets.forEach(set => {
+                    let setCount = set.countActiveItems();
+                    empoweredList.append(createElement('small', {
+                        text: `${set.name} Set (${Math.min(setCount, set.itemCount())}/${set.itemCount()})`,
+                        classList: [setCount > 0 ? 'text-success' : 'text-muted', 'text-center', 'col-12']
+                    }));
+                });
+            }
+
+            if(empoweredItem.slotMap !== undefined) {
+                empoweredItem.slotMap.forEach((items, slot) => {
+                    let foundItem = empoweredItem.getActiveItemForSlot(slot);
+                    empoweredList.append(createElement('small', {
+                        text: foundItem !== undefined ? foundItem.name : items[0].name,
+                        classList: [foundItem !== undefined ? 'text-success' : 'text-muted', 'text-center', 'col-12']
+                    }));
+                });
+            }
+
+            let stagesList = createElement('div', {
+                classList: ['text-left', 'col-12', 'row', 'no-gutters', 'pt-2'],
+                parent: empoweredContainer
+            });
+
+            empoweredItem.stages.forEach(stage => {
+                stagesList.append(createElement('small', {
+                    innerHTML: `(${stage.required}): ${stage.modifiedDescription}`,
+                    classList: [stage.required <= count ? 'text-success' : 'text-muted', 'text-center', 'col-12']
+                }));
+            });
+            
+            customHTML += empoweredContainer.innerHTML;
+        }
+
+        if(game.armoury.itemHasSet(item)) {
+            let setContainer = createElement('div');
+
+            let set = game.armoury.getSetFromItem(item);
+            let count = set.countActiveItems();
+
+            let setList = createElement('div', {
+                classList: ['text-center', 'col-12', 'row', 'no-gutters'],
+                parent: setContainer
+            });
+
+            setList.append(createElement('small', {
+                text: `${set.name} (${Math.min(count, set.highestRequirement)}/${set.highestRequirement}):`,
+                classList: ['text-warning', 'text-center', 'font-w700', 'col-12']
+            }));
+
+            set.slotMap.forEach((items, slot) => {
+                let foundItem = set.getActiveItemForSlot(slot);
+                setList.append(createElement('small', {
+                    text: foundItem !== undefined ? foundItem.name : items[0].name,
+                    classList: [foundItem !== undefined ? 'text-success' : 'text-muted', 'text-center', 'col-12']
+                }));
+            });
+
+            let stagesList = createElement('div', {
+                classList: ['text-left', 'col-12', 'row', 'no-gutters', 'pt-2'],
+                parent: setContainer
+            });
+
+            set.stages.forEach(stage => {
+                stagesList.append(createElement('small', {
+                    innerHTML: `(${stage.required}) Set: ${stage.modifiedDescription}`,
+                    classList: [stage.required <= count ? 'text-success' : 'text-muted', 'text-center', 'col-12']
+                }));
+            });
+            
+            customHTML += setContainer.innerHTML;
+        }
+
+        if(customHTML !== '') {
+            html = html.replace(/(<div class="media-body">.*)(<\/div>\s+?<\/div>)/s, `$1${customHTML}$2`);
+        }
+        return html;
+    }
+    window.createItemInformationTooltip = createItemInformationTooltip;
+
+    await gameData.addPackage('data/data.json');
 }
